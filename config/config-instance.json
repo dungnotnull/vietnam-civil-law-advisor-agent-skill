@@ -1,0 +1,70 @@
+{
+  "skillMetadata": {
+    "name": "vietnam-civil-law-advisor",
+    "version": "1.0.0",
+    "category": "legal-practice-support",
+    "targetJurisdiction": "Vietnam"
+  },
+  "legalFramework": {
+    "primaryCodes": [
+      {
+        "name": "Civil Code No. 91/2015/QH13",
+        "year": 2015,
+        "abbreviation": "CC2015"
+      },
+      {
+        "name": "Civil Procedure Code No. 92/2015/QH13",
+        "year": 2015,
+        "abbreviation": "CPC2015"
+      }
+    ],
+    "supportingLaws": [
+      {
+        "name": "Land Law No. 45/2013/QH13",
+        "year": 2013,
+        "relevance": "property-land-rights"
+      },
+      {
+        "name": "Law on Marriage and Family No. 52/2014/QH13",
+        "year": 2014,
+        "relevance": "family-law-matters"
+      }
+    ]
+  },
+  "featureFlags": {
+    "enableContractAnalysis": true,
+    "enablePropertyAnalysis": true,
+    "enableFamilyLawAnalysis": true,
+    "enableTortAnalysis": true,
+    "enablePrecedentChecking": true,
+    "enableMemoGeneration": true
+  },
+  "methodologies": {
+    "civilLawReasoning": true,
+    "iracFramework": true,
+    "comparativeMethod": true,
+    "codeBasedSyllogism": true
+  },
+  "outputConfiguration": {
+    "defaultTemplate": "IRAC",
+    "includeCitations": true,
+    "includePrecedentNotes": true,
+    "includeDisclaimer": true,
+    "citationStyle": "FORMAL"
+  },
+  "resourcePaths": {
+    "civilCodeIndex": "references/civil-code-2015-index.md",
+    "contractChecklist": "references/contract-law-checklist.md",
+    "propertyChecklist": "references/property-law-checklist.md",
+    "familyLawChecklist": "references/family-law-checklist.md",
+    "tortChecklist": "references/tort-law-checklist.md",
+    "precedentGuidance": "references/precedent-guidance.md",
+    "templates": "templates/"
+  },
+  "validationSettings": {
+    "maxInputLength": 10000,
+    "requireExplicitJurisdiction": false,
+    "allowNamedParties": false,
+    "enableScopeValidation": true
+  }
+}

@@ -1,0 +1,388 @@
+{
+  "skill_name": "vietnam-civil-law-advisor",
+  "version": "1.0.0",
+  "description": "Evaluation test cases for Vietnam Civil Law Advisor skill",
+  "last_updated": "2026-08-04",
+  "evals": [
+    {
+      "id": 1,
+      "name": "contract-liquidated-damages-analysis",
+      "description": "Analysis of liquidated damages clause exceeding actual damage",
+      "domain": "contract",
+      "prompt": "Analyze a contract between Company A and Company B where Company A agrees to sell goods to Company B for $1,000,000. The contract includes a liquidated damages clause specifying 20% of contract value if either party breaches. Company A fails to deliver on time, causing actual damages estimated at $150,000 (storage costs, alternative procurement, and lost profits). Analyze the enforceability of the liquidated damages clause under Vietnamese law.",
+      "expected_output": "Analysis should identify that: (1) Contract is valid under Article 117 CC2015; (2) Liquidated damages of $200,000 substantially exceed actual damage of $150,000; (3) Under Article 363 CC2015 and relevant precedent, courts may reduce excessive liquidated damages; (4) Clause may be reduced to approximately 15-20% to align with actual damage.",
+      "files": [],
+      "complexity": "medium",
+      "assertions": [
+        {
+          "id": "contract-validity-assertion",
+          "description": "Identifies contract validity under Article 117",
+          "check_type": "content_contains",
+          "expected_value": "Article 117",
+          "weight": 1.0,
+          "critical": true
+        },
+        {
+          "id": "liquidated-damages-citation",
+          "description": "Cites Article 363 for liquidated damages",
+          "check_type": "content_contains",
+          "expected_value": "Article 363",
+          "weight": 1.0,
+          "critical": true
+        },
+        {
+          "id": "damage-comparison",
+          "description": "Compares liquidated damages to actual damage",
+          "check_type": "content_contains",
+          "expected_value": "exceed",
+          "weight": 0.8,
+          "critical": false
+        },
+        {
+          "id": "precedent-consideration",
+          "description": "Considers relevant precedent on liquidated damages",
+          "check_type": "content_contains",
+          "expected_value": "precedent",
+          "weight": 0.6,
+          "critical": false
+        },
+        {
+          "id": "recommendation-provided",
+          "description": "Provides practical recommendations",
+          "check_type": "content_contains",
+          "expected_value": "recommend",
+          "weight": 0.8,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "property-ownership-dispute-analysis",
+      "description": "Property ownership dispute between purchaser with old contract and current certificate holder",
+      "domain": "property",
+      "prompt": "Analyze a property dispute where Party A claims ownership of a parcel of land based on a written purchase agreement from 2010 and continuous possession since then. Party B holds a current Land Use Right Certificate (LURC) issued in 2020 after purchasing from Party C, who had obtained a LURC in 2015. Neither party properly registered the 2010 transaction. Analyze ownership rights and priority under Vietnamese law.",
+      "expected_output": "Analysis should identify that: (1) Party B has superior title due to current LURC under Land Law 2013; (2) Party A's 2010 transaction was not properly registered; (3) Under Land Law 2013, unregistered transfers do not create enforceable rights; (4) Party A may have claims against Party C but not against Party B; (5) Proper registration is required for valid property transfers.",
+      "files": [],
+      "complexity": "high",
+      "assertions": [
+        {
+          "id": "dual-citation-format",
+          "description": "Uses dual citation format (CC2015 + LL2013)",
+          "check_type": "content_contains",
+          "expected_value": "Land Law 2013",
+          "weight": 1.0,
+          "critical": true
+        },
+        {
+          "id": "registration-requirement",
+          "description": "Identifies registration requirement for property transfer",
+          "check_type": "content_contains",
+          "expected_value": "registration",
+          "weight": 1.0,
+          "critical": true
+        },
+        {
+          "id": "lurc-authority",
+          "description": "Recognizes LURC authority for ownership proof",
+          "check_type": "content_contains",
+          "expected_value": "Land Use Right Certificate",
+          "weight": 0.9,
+          "critical": false
+        },
+        {
+          "id": "priority-determination",
+          "description": "Determines priority between parties",
+          "check_type": "content_contains",
+          "expected_value": "superior",
+          "weight": 0.9,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "civil-liability-article-584-framework",
+      "description": "Civil liability analysis using Article 584 framework with contributory negligence",
+      "domain": "tort",
+      "prompt": "Analyze a civil liability case where Driver A was operating a delivery truck for Company D and ran a red light, striking Pedestrian B who was crossing in a crosswalk. Pedestrian B suffered $80,000 in medical expenses and $20,000 in lost wages. Evidence shows Pedestrian B was looking at their phone and not paying attention to traffic. The traffic light was working properly. Driver A was acting within scope of employment. Analyze civil liability under Vietnamese law.",
+      "expected_output": "Analysis should apply Article 584 framework systematically: (1) Illegal act - running red light (Driver A) and pedestrian negligence (Pedestrian B); (2) Damage - $100,000 total damages proven; (3) Causation - both parties' actions contributed to accident; (4) Fault - Driver A primarily at fault, Pedestrian B contributorily negligent. Analysis should conclude Driver A and Company D vicariously liable for majority of damages, reduced by Pedestrian B's contributory fault.",
+      "files": [],
+      "complexity": "high",
+      "assertions": [
+        {
+          "id": "article-584-application",
+          "description": "Applies Article 584 framework systematically",
+          "check_type": "content_contains",
+          "expected_value": "Article 584",
+          "weight": 1.0,
+          "critical": true
+        },
+        {
+          "id": "framework-elements",
+          "description": "Addresses all four Article 584 elements",
+          "check_type": "element_coverage",
+          "expected_elements": ["illegal act", "damage", "causation", "fault"],
+          "weight": 0.9,
+          "critical": true
+        },
+        {
+          "id": "vicarious-liability",
+          "description": "Identifies employer vicarious liability",
+          "check_type": "content_contains",
+          "expected_value": "vicarious",
+          "weight": 0.7,
+          "critical": false
+        },
+        {
+          "id": "contributory-fault",
+          "description": "Addresses contributory negligence",
+          "check_type": "content_contains",
+          "expected_value": "contributory",
+          "weight": 0.9,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "divorce-property-division-analysis",
+      "description": "Divorce with unequal property contributions analysis",
+      "domain": "family",
+      "prompt": "Analyze a divorce case where Husband and Wife married in 2010. During marriage, they purchased a house for $500,000, with Husband paying $400,000 from inheritance and Wife paying $100,000 from savings. Wife managed the household and cared for their two children throughout marriage, not working outside the home. Husband's current income is $100,000/year, Wife has no recent work history. They now seek divorce. Analyze property division and spousal support under Vietnamese law.",
+      "expected_output": "Analysis should address: (1) Marriage formation and validity under MFL2014; (2) Property regime determination (default separate property or agreed); (3) Classification of house as common or separate property; (4) Property division principles considering unequal contributions; (5) Recognition of non-financial contributions (childcare, household management); (6) Spousal support considerations; (7) Child custody and support if applicable.",
+      "files": [],
+      "complexity": "high",
+      "assertions": [
+        {
+          "id": "family-law-citation",
+          "description": "Cites Marriage and Family Law 2014",
+          "check_type": "content_contains",
+          "expected_value": "Marriage and Family Law 2014",
+          "weight": 1.0,
+          "critical": true
+        },
+        {
+          "id": "property-regime-analysis",
+          "description": "Analyzes property regime",
+          "check_type": "content_contains",
+          "expected_value": "property regime",
+          "weight": 0.8,
+          "critical": false
+        },
+        {
+          "id": "non-financial-contributions",
+          "description": "Recognizes non-financial contributions",
+          "check_type": "content_contains",
+          "expected_value": "contributions",
+          "weight": 0.9,
+          "critical": false
+        },
+        {
+          "id": "support-considerations",
+          "description": "Addresses support obligations",
+          "check_type": "content_contains",
+          "expected_value": "support",
+          "weight": 0.8,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "contract-validity-minor-capacity",
+      "description": "Contract validity analysis involving minor without guardian consent",
+      "domain": "contract",
+      "prompt": "Analyze a contract where 17-year-old Student A signed a one-year lease agreement for an apartment without parental consent, paying first month's rent and deposit from savings earned from part-time work. Landlord B did not verify Student A's age or request guardian consent. Student A now wants to terminate the lease after two months. Analyze contract validity and consequences under Vietnamese law.",
+      "expected_output": "Analysis should determine: (1) Student A has limited civil act capacity as minor (15-18) under Article 21 CC2015; (2) Contract may be voidable under Article 24 CC2015 for lack of full capacity; (3) Landlord should have verified capacity and obtained guardian consent; (4) Student A (or guardian) may seek to void contract; (5) Consequences include restoration of parties to pre-contract position; (6) Landlord may have claim for damages if student misrepresented age.",
+      "files": [],
+      "complexity": "medium",
+      "assertions": [
+        {
+          "id": "capacity-analysis",
+          "description": "Analyzes civil act capacity",
+          "check_type": "content_contains",
+          "expected_value": "capacity",
+          "weight": 1.0,
+          "critical": true
+        },
+        {
+          "id": "minor-capacity-determination",
+          "description": "Identifies limited capacity of minor",
+          "check_type": "content_contains",
+          "expected_value": "minor",
+          "weight": 0.9,
+          "critical": false
+        },
+        {
+          "id": "voidability-analysis",
+          "description": "Analyzes contract voidability",
+          "check_type": "content_contains",
+          "expected_value": "void",
+          "weight": 0.9,
+          "critical": false
+        },
+        {
+          "id": "consequences-assessment",
+          "description": "Addresses consequences of voiding contract",
+          "check_type": "content_contains",
+          "expected_value": "consequence",
+          "weight": 0.7,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "inheritance-will-validity-analysis",
+      "description": "Will validity analysis with formal defects",
+      "domain": "family",
+      "prompt": "Analyze an inheritance case where Testator, age 80, wrote a will leaving all assets to Daughter A, excluding Daughter B and Son C. The will was handwritten by Testator, signed by Testator, and dated. However, it was not notarized or witnessed. Testator was of sound mind but under pressure from Daughter A. Testator died 6 months later. Analyze will validity and inheritance rights under Vietnamese law.",
+      "expected_output": "Analysis should examine: (1) Testator capacity under Article 464 CC2015; (2) Will form requirements - handwritten will valid under Article 469 CC2015; (3) Lack of notarization not fatal for handwritten wills; (4) Possible undue influence from Daughter A may affect validity; (5) Mandatory portion rights of excluded heirs under Article 644 CC2015; (6) Potential for will reduction to protect compulsory portion; (7) Legal inheritance as alternative.",
+      "files": [],
+      "complexity": "high",
+      "assertions": [
+        {
+          "id": "will-capacity-check",
+          "description": "Checks testator capacity",
+          "check_type": "content_contains",
+          "expected_value": "capacity",
+          "weight": 0.8,
+          "critical": false
+        },
+        {
+          "id": "will-form-analysis",
+          "description": "Analyzes will form requirements",
+          "check_type": "content_contains",
+          "expected_value": "handwritten",
+          "weight": 0.9,
+          "critical": false
+        },
+        {
+          "id": "undue-influence-consideration",
+          "description": "Considers undue influence",
+          "check_type": "content_contains",
+          "expected_value": "influence",
+          "weight": 0.7,
+          "critical": false
+        },
+        {
+          "id": "mandatory-portion-rights",
+          "description": "Addresses mandatory portion rights",
+          "check_type": "content_contains",
+          "expected_value": "mandatory",
+          "weight": 0.9,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "irac-memo-generation-contract-dispute",
+      "description": "IRAC memo generation for commercial contract dispute",
+      "domain": "contract",
+      "prompt": "Generate an IRAC legal memo for a commercial dispute where Manufacturer agreed to produce and deliver 10,000 units to Retailer by December 1 for $10/unit, with late delivery penalty of 1% of contract value per week. Manufacturer delivered only 8,000 units on December 15, and remaining 2,000 units on December 30. Retailer suffered lost sales during holiday season. Manufacturer claims force majeure due to equipment failure. Analyze breach, damages, and defenses.",
+      "expected_output": "IRAC memo should include: Issue (breach and damages); Rule (Articles 355-369 CC2015 on breach, Article 363 on penalties, Article 277 on force majeure); Application (partial breach, late delivery, penalty calculation, force majeure analysis); Conclusion (Manufacturer liable for breach and damages, penalty applicable, force majeure unlikely to excuse equipment failure); Recommendations (damage calculation, settlement considerations).",
+      "files": [],
+      "complexity": "high",
+      "assertions": [
+        {
+          "id": "irac-structure-followed",
+          "description": "Follows IRAC structure",
+          "check_type": "structure_validation",
+          "expected_structure": ["Issue", "Rule", "Application", "Conclusion"],
+          "weight": 1.0,
+          "critical": true
+        },
+        {
+          "id": "memo-disclaimer-included",
+          "description": "Includes mandatory disclaimer",
+          "check_type": "content_contains",
+          "expected_value": "disclaimer",
+          "weight": 1.0,
+          "critical": true
+        },
+        {
+          "id": "citation-completeness",
+          "description": "Includes proper Civil Code citations",
+          "check_type": "citation_count",
+          "minimum_citations": 3,
+          "weight": 0.8,
+          "critical": false
+        },
+        {
+          "id": "practical-recommendations",
+          "description": "Provides practical recommendations",
+          "check_type": "section_exists",
+          "expected_section": "Recommendations",
+          "weight": 0.7,
+          "critical": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "issue-spotting-complex-contract-dispute",
+      "description": "Comprehensive issue-spotting for complex contract dispute",
+      "domain": "contract",
+      "prompt": "Generate a comprehensive issue-spotting checklist for a complex contract dispute: Software Company licensed custom software to Client for $500,000, with $100,000 upfront and $400,000 on successful delivery and acceptance. Contract specified delivery within 6 months, acceptance testing within 2 weeks of delivery. Company delivered 7 months late, software failed 40% of acceptance tests, Client refused to pay balance and claimed damages for delayed project launch. Company claims Client changed requirements mid-project causing delays. Original contract had no change order provision. Analyze all issues.",
+      "expected_output": "Checklist should identify issues: contract validity (Article 117), performance obligations ( Articles 279-287), breach analysis (late delivery, defective performance), damages calculation (delay damages, consequential damages), modification issues (verbal changes, consideration), impossibility/impracticability, mitigation of damages, termination rights, specific performance availability, professional services considerations, evidence requirements, potential remedies.",
+      "files": [],
+      "complexity": "very_high",
+      "assertions": [
+        {
+          "id": "checklist-structure",
+          "description": "Provides structured checklist",
+          "check_type": "structure_validation",
+          "expected_structure": ["categories", "checklist_items", "priority"],
+          "weight": 0.8,
+          "critical": false
+        },
+        {
+          "id": "issue-completeness",
+          "description": "Identifies multiple legal issues",
+          "check_type": "minimum_issues",
+          "minimum_count": 8,
+          "weight": 0.9,
+          "critical": false
+        },
+        {
+          "id": "priority-assessment",
+          "description": "Prioritizes issues",
+          "check_type": "content_contains",
+          "expected_value": "priority",
+          "weight": 0.7,
+          "critical": false
+        },
+        {
+          "id": "article-references",
+          "description": "References relevant Civil Code articles",
+          "check_type": "citation_count",
+          "minimum_citations": 5,
+          "weight": 0.8,
+          "critical": false
+        }
+      ]
+    }
+  ],
+  "evaluation_metadata": {
+    "total_evals": 8,
+    "domains_tested": ["contract", "property", "family", "tort"],
+    "complexity_levels": ["medium", "high", "very_high"],
+    "critical_assertions_count": 12,
+    "total_assertions_count": 32,
+    "coverage_analysis": {
+      "contract_law": 4,
+      "property_law": 1,
+      "family_law": 2,
+      "tort_law": 1
+    }
+  },
+  "execution_notes": {
+    "baseline_comparison": "Each eval should compare output with and without skill activation",
+    "performance_metrics": "Track token usage, response time, and quality metrics",
+    "assertion_validation": "Run automated assertion checking after generation",
+    "human_review": "Include human review for qualitative assessment",
+    "iteration_tracking": "Track improvements across iterations"
+  }
+}

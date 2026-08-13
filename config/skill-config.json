@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Vietnam Civil Law Advisor Skill Configuration",
+  "description": "Type-safe configuration management for the Vietnam Civil Law Advisor skill",
+  "type": "object",
+  "properties": {
+    "skillMetadata": {
+      "type": "object",
+      "description": "Core skill metadata",
+      "properties": {
+        "name": {
+          "type": "string",
+          "const": "vietnam-civil-law-advisor"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Semantic version number"
+        },
+        "category": {
+          "type": "string",
+          "const": "legal-practice-support"
+        },
+        "targetJurisdiction": {
+          "type": "string",
+          "const": "Vietnam"
+        }
+      },
+      "required": ["name", "version", "category", "targetJurisdiction"]
+    },
+    "legalFramework": {
+      "type": "object",
+      "description": "Legal framework configuration",
+      "properties": {
+        "primaryCodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "year": { "type": "number" },
+              "abbreviation": { "type": "string" }
+            },
+            "required": ["name", "year", "abbreviation"]
+          }
+        },
+        "supportingLaws": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "year": { "type": "number" },
+              "relevance": { "type": "string" }
+            },
+            "required": ["name", "year", "relevance"]
+          }
+        }
+      },
+      "required": ["primaryCodes", "supportingLaws"]
+    },
+    "featureFlags": {
+      "type": "object",
+      "description": "Feature activation flags",
+      "properties": {
+        "enableContractAnalysis": { "type": "boolean" },
+        "enablePropertyAnalysis": { "type": "boolean" },
+        "enableFamilyLawAnalysis": { "type": "boolean" },
+        "enableTortAnalysis": { "type": "boolean" },
+        "enablePrecedentChecking": { "type": "boolean" },
+        "enableMemoGeneration": { "type": "boolean" }
+      },
+      "required": ["enableContractAnalysis", "enablePropertyAnalysis", "enableFamilyLawAnalysis", "enableTortAnalysis", "enablePrecedentChecking", "enableMemoGeneration"]
+    },
+    "methodologies": {
+      "type": "object",
+      "description": "Enabled methodologies and frameworks",
+      "properties": {
+        "civilLawReasoning": { "type": "boolean" },
+        "iracFramework": { "type": "boolean" },
+        "comparativeMethod": { "type": "boolean" },
+        "codeBasedSyllogism": { "type": "boolean" }
+      },
+      "required": ["civilLawReasoning", "iracFramework", "comparativeMethod", "codeBasedSyllogism"]
+    },
+    "outputConfiguration": {
+      "type": "object",
+      "description": "Output formatting and structure",
+      "properties": {
+        "defaultTemplate": {
+          "type": "string",
+          "enum": ["IRAC", "MEMO", "CHECKLIST", "OPINION"]
+        },
+        "includeCitations": { "type": "boolean" },
+        "includePrecedentNotes": { "type": "boolean" },
+        "includeDisclaimer": { "type": "boolean" },
+        "citationStyle": {
+          "type": "string",
+          "enum": ["FORMAL", "ABBREVIATED", "INLINE"]
+        }
+      },
+      "required": ["defaultTemplate", "includeCitations", "includePrecedentNotes", "includeDisclaimer", "citationStyle"]
+    },
+    "resourcePaths": {
+      "type": "object",
+      "description": "Resource file paths",
+      "properties": {
+        "civilCodeIndex": { "type": "string" },
+        "contractChecklist": { "type": "string" },
+        "propertyChecklist": { "type": "string" },
+        "familyLawChecklist": { "type": "string" },
+        "tortChecklist": { "type": "string" },
+        "precedentGuidance": { "type": "string" },
+        "templates": { "type": "string" }
+      },
+      "required": ["civilCodeIndex", "contractChecklist", "propertyChecklist", "familyLawChecklist", "tortChecklist", "precedentGuidance", "templates"]
+    },
+    "validationSettings": {
+      "type": "object",
+      "description": "Input validation and constraint settings",
+      "properties": {
+        "maxInputLength": { "type": "number" },
+        "requireExplicitJurisdiction": { "type": "boolean" },
+        "allowNamedParties": { "type": "boolean" },
+        "enableScopeValidation": { "type": "boolean" }
+      },
+      "required": ["maxInputLength", "requireExplicitJurisdiction", "allowNamedParties", "enableScopeValidation"]
+    }
+  },
+  "required": ["skillMetadata", "legalFramework", "featureFlags", "methodologies", "outputConfiguration", "resourcePaths", "validationSettings"],
+  "additionalProperties": false
+}
